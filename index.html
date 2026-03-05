@@ -1,82 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Garfield Character Selector</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scooby-Doo Character Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #fff5e6;
+        }
 
-<style>
+        h1 {
+            color: #ff6600;
+        }
 
-body{
-    font-family: Arial, sans-serif;
-    text-align:center;
-    background-color:#f5f5f5;
-    margin-top:50px;
-}
+        select {
+            font-size: 18px;
+            margin: 20px;
+            padding: 5px;
+        }
 
-h1{
-    color:#333;
-}
-
-select{
-    font-size:16px;
-    padding:8px;
-}
-
-img{
-    margin-top:20px;
-    width:300px;
-    border-radius:10px;
-    border:2px solid #ccc;
-}
-
-</style>
-
+        img {
+            width: 300px;
+            height: 300px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>Garfield Character Selector</h1>
+    <h1>Scooby-Doo Character Selector</h1>
 
-<label>Select Character:</label>
+    <select id="characterSelect">
+        <!-- Options will be filled dynamically -->
+    </select>
 
-<select id="characterSelect">
-</select>
+    <br>
+    <img id="characterImage" src="images/Scooby-Doo.jpg" alt="Scooby-Doo">
 
-<br>
+    <script>
+        // Array of Scooby-Doo characters
+        const characters = ["Scooby-Doo", "Shaggy", "Fred"];
 
-<img id="characterImage" src="images/Garfield.jpg" alt="Character Image">
+        // Get references to select box and image
+        const selectBox = document.getElementById("characterSelect");
+        const characterImage = document.getElementById("characterImage");
 
-<script>
+        // Fill the select box with character options
+        characters.forEach(character => {
+            const option = document.createElement("option");
+            option.value = character; // Must match image file name
+            option.text = character;
+            selectBox.appendChild(option);
+        });
 
-// Character list
-const characters = ["Garfield","Odie","Nermal","Pooky","Jon"];
-
-// Select elements
-const selectBox = document.getElementById("characterSelect");
-const image = document.getElementById("characterImage");
-
-// Fill selection box
-characters.forEach(function(character){
-
-    const option = document.createElement("option");
-
-    option.value = character;
-    option.text = character;
-
-    selectBox.appendChild(option);
-
-});
-
-// Change image when selection changes
-selectBox.addEventListener("change", function(){
-
-    const selectedCharacter = selectBox.value;
-
-    image.src = "images/" + selectedCharacter + ".jpg";
-
-});
-
-</script>
+        // Change image when selection changes
+        selectBox.addEventListener("change", () => {
+            const selected = selectBox.value;
+            characterImage.src = `images/${selected}.jpg`;
+            characterImage.alt = selected;
+        });
+    </script>
 
 </body>
 </html>
